@@ -27,10 +27,20 @@ router.post("/login", (req, res, next) => {
     errors.push({ msg: "Fill All Fields" });
     res.render("login", { errors });
   } else {
-    passport.authenticate("local", {
-      successRedirect: "/user/panel",
-      faliureRedirect: "/login",
-      failureFlash: true
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        errors.push({ msg: "Invalid Credentials" });
+        return res.render("login", { errors });
+      }
+      req.logIn(user, function (err) {
+        if (err) {
+          return next(err);
+        }
+        return res.redirect("/user/panel");
+      });
     })(req, res, next);
   }
 });
