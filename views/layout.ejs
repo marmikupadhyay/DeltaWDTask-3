@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>InviteBook</title>
+  </head>
+  <body>
+    <%- body %>
+    <script>
+      var userdata = {};
+      fetch("/api/users")
+        .then(res => res.json())
+        .then(data => {
+          data.forEach(user => {
+            userdata[user.username] = null;
+          });
+        });
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".autocomplete");
+        var instances = M.Autocomplete.init(elems, {
+          data: userdata
+        });
+      });
+    </script>
+  </body>
+</html>

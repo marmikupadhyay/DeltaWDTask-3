@@ -1,0 +1,8 @@
+<h1 class="sub-head">
+  Recent Articles
+</h1>
+<hr />
+<div class="area row">
+  <% userPosts.forEach((post,index)=>{ %> <% if(index < 3){ %> <%-
+  include('./post.ejs',{post,editable:false}) %> <% } %><% }); %>
+</div>

@@ -1,0 +1,6 @@
+<h1 class="sub-head">
+  Invites made by You
+</h1>
+<hr />
+<% userInvites.forEach(invite=>{ %> <%-
+include('./invite.ejs',{invite,editable:true}); %> <% }); %>

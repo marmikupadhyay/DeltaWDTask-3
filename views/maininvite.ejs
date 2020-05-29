@@ -1,0 +1,60 @@
+<%- include('./partials/nav.ejs'); %>
+<section class="sec-1" id="sec-1">
+  <div class="row">
+    <%- include('./partials/sidebar.ejs',{admin:true}); %>
+    <div class="col s9 offset-s3 content">
+      <div class="row">
+        <div class="col s12 main-content">
+          <article class="col s10 offset-s1 z-depth-2 invite">
+            <h1 class="invite-header purple darken-1 white-text">
+              <%= invite.header %>
+            </h1>
+            <div>
+              <i class="material-icons">edit</i>
+              <span class="author"><%= invite.creatorName %></span>
+            </div>
+            <div>
+              <i class="material-icons">today</i>
+              <span class="author">On <%= invite.date %></span>
+            </div>
+            <div>
+              <i class="material-icons">alarm</i>
+              <span class="author">At <%= invite.time %></span>
+            </div>
+            <div class="invite-body">
+              <%- invite.body%>
+            </div>
+            <h1 class="invite-footer cyan lighten-2 white-text">
+              <%= invite.footer %>
+            </h1>
+            <% if(invite.creator.equals(user._id)) { %>
+            <div class="btn-box">
+              <h5 class="center-align">You cant answer your own invite</h5>
+            </div>
+            <% } else
+            if(!invite.accepted.includes(user._id)&&!invite.rejected.includes(user._id))
+            { %>
+            <div class="btn-box">
+              <a
+                href="/user/accept/<%= invite._id %>"
+                class="waves-effect waves-light btn green ligten-1 left"
+                >Accept</a
+              >
+              <a
+                href="/user/reject/<%= invite._id %>"
+                class="waves-effect waves-light btn red ligten-1 right"
+                >Reject</a
+              >
+            </div>
+            <% } else { %>
+            <div class="btn-box">
+              <h5 class="center-align">Already Answered</h5>
+            </div>
+            <% } %>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

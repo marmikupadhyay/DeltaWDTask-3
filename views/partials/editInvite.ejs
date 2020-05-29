@@ -1,0 +1,99 @@
+<h1 class="sub-head">
+  <%= title %>
+</h1>
+<hr />
+<div class="article-form z-depth-2">
+  <form action="/user/edit<%=invite._id%>" method="POST" id="<%= invite._id %>">
+    <div class="input-field">
+      <i class="material-icons prefix">title</i>
+      <input
+        type="text"
+        id="header"
+        name="header"
+        value="<%= invite.header %>"
+      />
+      <label for="header">Header</label>
+    </div>
+    <div class="input-field">
+      <textarea
+        name="body"
+        id="body"
+        class="materialize-textarea hide bodyarea"
+      >
+<%= invite.body %></textarea
+      >
+      <h4>Content</h4>
+      <div class="iconbar">
+        <a
+          class="btn-floating btn-large waves-effect waves-light pink lighten-1 bold"
+          ><i class="material-icons">format_bold</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light blue lighten-1 italic"
+          ><i class="material-icons">format_italic</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light green lighten-1 underline"
+          ><i class="material-icons">format_underline</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light yellow lighten-1 link"
+          ><i class="material-icons">link</i></a
+        >
+        <a
+          class="btn-floating btn-large waves-effect waves-light black lighten-1 unlink"
+          ><i class="material-icons">link_off</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light violet lighten-1 insimg"
+          ><i class="material-icons">insert_photo</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light violet lighten-1 fontname"
+          ><i class="material-icons">text_format</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light purple lighten-1 fontname"
+          ><i class="material-icons">text_format</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light orange lighten-1 fontsize"
+          ><i class="material-icons">format_size</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light grey lighten-1 justifyleft"
+          ><i class="material-icons">format_align_left</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light purple darken-4 justifycenter"
+          ><i class="material-icons">format_align_center</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light violet lighten-1 justifyright"
+          ><i class="material-icons">format_align_right</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light red darken-2 undo"
+          ><i class="material-icons">undo</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light yellow darken-1 redo"
+          ><i class="material-icons">redo</i></a
+        ><a
+          class="btn-floating btn-large waves-effect waves-light blue lighten-2 textcolor"
+          ><i class="material-icons">palette</i></a
+        >
+        <input type="color" id="<%= invite._id %>c" />
+      </div>
+
+      <iframe
+        name="<%= invite._id %>"
+        id="richTextField"
+        class="editor"
+      ></iframe>
+    </div>
+    <div class="input-field">
+      <i class="material-icons prefix">web</i>
+      <input
+        type="text"
+        id="footer"
+        name="footer"
+        value="<%= invite.footer %>"
+      />
+      <label for="footer">Footer</label>
+    </div>
+    <div class="col s12 btn-box">
+      <a class="btn cyan accent-4 waves-effect waves-light submit2">
+        Save
+      </a>
+    </div>
+  </form>
+</div>

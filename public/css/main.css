@@ -1,0 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ############## LOGIN / SIGN-UP PAGES ############### */
+
+.mainwrap {
+  margin: 0;
+}
+
+.banner {
+  height: 100vh;
+  background: url(../imgs/sidebanner.jpg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.95;
+}
+.sidebox {
+  height: 100vh;
+  position: relative;
+}
+
+.sidebox .head {
+  padding: 2px;
+  margin-top: 10px;
+}
+
+.sidebox .title {
+  font-family: "Chelsea Market", cursive;
+  margin: 0.2em 0;
+  font-size: 3.5em;
+}
+
+.line {
+  border-width: 0.5px;
+  margin: 0.5em 0;
+  margin-top: 1.5em;
+}
+
+.form-container {
+  padding: 0 !important;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -40%);
+}
+
+.form-container form {
+  margin: 10px 0;
+}
+
+.btn-box {
+  margin-bottom: 10px;
+}
+
+form .btn {
+  width: 100%;
+}
+
+.sub-head {
+  margin: 0;
+  width: 100%;
+  padding: 20px 10px;
+}
+
+.form-container .text {
+  margin: 10px;
+}
+
+.error {
+  font-size: 25px;
+}
+
+/* ###################### USER PANEL ########################## */
+
+.sec-1 {
+  overflow-y: auto;
+}
+
+.sec-1 .row {
+  overflow-y: auto;
+}
+
+.sec-1 .profile {
+  position: fixed;
+  height: 100vh;
+}
+
+.profile .sub-head {
+  margin: 0 !important;
+  margin-top: 10px !important;
+  padding: 0;
+  padding-left: 10px;
+}
+
+.profile .sub-head i {
+  position: relative;
+  right: 0;
+}
+
+.profile .card {
+  overflow-x: auto;
+}
+.profile .card .card-title {
+  font-size: 2.5em;
+}
+
+.profile .card-image {
+  text-align: center;
+  width: 100%;
+}
+
+.profile .card-image img {
+  width: 70%;
+  height: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card .chip {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card .btn-floating {
+  margin: 10px 20px;
+}
+
+.card .card-action-box {
+  border-top: 1px solid black;
+}
+.card .card-action-box span {
+  font-size: 2em;
+}
+
+.brand-logo i {
+  margin-left: 10px;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+}
+
+/* ################## MAIN AREA ################ */
+
+.main-content {
+  margin: 0 !important;
+}
+
+.tab a {
+  font-size: 1.5em !important;
+}
+
+.tab .active {
+  background: #ec407a !important;
+  color: white !important;
+}
+
+.area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+}
+
+#feed {
+  margin-left: none;
+}
+
+/* ######## ARTICLES ######## */
+article {
+  margin: 20px;
+  border: 1px solid black;
+  padding: 20px !important;
+}
+
+article img {
+  margin: 20px 0;
+  width: 100%;
+  height: auto;
+}
+
+article h1 {
+  margin: 0;
+  border-bottom: 1px solid darkblue;
+}
+
+article .author,
+article .date {
+  font-size: 1.5em;
+}
+
+article .body {
+  overflow: hidden;
+  max-height: 100px;
+  line-height: 25px;
+}
+
+article .btn {
+  margin-top: 10px;
+}
+
+article .btn-floating {
+  margin: 0 10px !important;
+}
+
+article img {
+  width: 70%;
+  height: auto;
+}
+/* ################ Invite Forms ###################*/
+
+.article-form {
+  padding: 20px;
+  margin: 20px 0;
+  overflow-y: auto;
+}
+
+.article-form form .input-field input {
+  font-size: 2em;
+}
+
+.editor {
+  width: 90%;
+  margin: 0 5%;
+  margin-top: 20px;
+  border: 1px solid black;
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.iconbar {
+  margin-top: 20px !important;
+}
+
+.iconbar a {
+  margin: 0 10px;
+}
+
+/* ##################### INVITES ################# */
+.invite {
+  padding: 0 !important;
+}
+
+.invite-header {
+  margin: 0;
+  padding: 10px 20px;
+}
+.invite i {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.invite-body {
+  padding: 20px;
+}
+
+.invite-footer {
+  margin: 20px 0 0 0;
+  text-align: center;
+  font-size: 2em;
+}
+
+.invite .btn-box {
+  margin: 20px !important;
+  overflow: hidden;
+}
+
+.invite .btn-box .btn {
+  margin: 0;
+  width: 20%;
+}

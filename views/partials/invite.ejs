@@ -1,0 +1,34 @@
+<article class="col s10 offset-s1 z-depth-2">
+  <h1 class="title">
+    <%= invite.header %>
+  </h1>
+  <i class="material-icons">edit</i>
+  <span class="author"><%= invite.creatorName %></span>
+  <i class="material-icons right">today</i>
+  <span class="author right">On <%= invite.date %></span>
+  <div class="body">
+    <%- invite.body%>
+  </div>
+  <a
+    href="/user/view/<%= invite._id %>"
+    class="waves-effect waves-light btn pink accent-2 more"
+    >See Invite</a
+  >
+  <% if(editable) { %>
+  <a
+    href="/user/delete<%= invite._id %>"
+    class="waves-effect waves-light btn-floating btn-large red right"
+  >
+    <i class="material-icons small">close</i>
+  </a>
+  <a
+    href="#/"
+    class="waves-effect waves-light btn-floating btn-large pink accent-2 right"
+  >
+    <i class="material-icons small edit">edit</i>
+  </a>
+  <div class="editbox col s12 hide">
+    <%- include('./editInvite.ejs',{title:"Edit Invite"}); %>
+  </div>
+  <% } %>
+</article>

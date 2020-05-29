@@ -1,0 +1,6 @@
+<h1 class="sub-head">
+  Accepted Invites
+</h1>
+<hr />
+<% allInvites.forEach(invite=>{ %> <% if(invite.accepted.includes(user._id)) {
+%> <%-include('./invite.ejs',{invite,editable:false}); %> <% } %> <% }); %>

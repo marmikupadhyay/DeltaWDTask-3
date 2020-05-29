@@ -1,0 +1,5 @@
+<div class="area row">
+  <% allInvites.forEach(invite=>{ %> <%
+  if(!invite.accepted.includes(user._id)&&!invite.rejected.includes(user._id)&&!invite.creator.equals(user._id)&&(invite.sendto.includes(user.username)||invite.global))
+  { %> <%-include('./invite.ejs',{invite,editable:false}); %> <% } %> <% }); %>
+</div>

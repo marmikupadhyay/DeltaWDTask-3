@@ -1,0 +1,103 @@
+<%- include('./partials/nav.ejs'); %>
+<section class="sec-1" id="sec-1">
+  <div class="row">
+    <%- include('./partials/sidebar.ejs',{admin:true}); %>
+    <div class="col s9 offset-s3 content">
+      <div class="row">
+        <div class="col s12 main-content">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab">
+              <a class="active" href="#feed">New Invites</a>
+            </li>
+            <li class="tab">
+              <a href="#dashboard">Accepted Invites</a>
+            </li>
+            <li class="tab">
+              <a href="#edit-profile">Your Creations</a>
+            </li>
+            <li class="tab">
+              <a href="#workspace">Workspace</a>
+            </li>
+          </ul>
+        </div>
+        <div id="feed" class="col s12">
+          <%- include('./partials/messages.ejs'); %> <%-
+          include('./partials/allinvites.ejs'); %>
+        </div>
+        <div id="dashboard" class="col s12">
+          <%- include('./partials/acceptedinvites.ejs'); %>
+        </div>
+        <div id="edit-profile" class="col s12">
+          <%- include('./partials/yourinvites.ejs'); %>
+        </div>
+        <div id="workspace" class="col s12">
+          <%- include('./partials/workspace.ejs',{title:"Create Invite"}); %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", e => {
+    var instance = M.Tabs.init(document.querySelector(".tabs"), {});
+    var instances = M.Chips.init(document.querySelectorAll(".chips"), {
+      autocompleteOptions: {
+        data: {
+          Apple: null,
+          Microsoft: null,
+          Google: null
+        }
+      }
+    });
+    var dates = M.Datepicker.init(document.querySelectorAll(".datepicker"), {});
+    var times = M.Timepicker.init(document.querySelectorAll(".timepicker"), {});
+
+    //Function to submit the edit form
+    function submit_form2(id) {
+      var frames = window.frames;
+      var theForm = document.getElementById(id);
+      theForm.elements["body"].value = frames[id].document.body.innerHTML;
+      theForm.querySelector(".editor").name = "blank";
+      theForm.submit();
+    }
+
+    //Function to change color of the text in edit form
+    function iTextcolor(id) {
+      var color = document.getElementById(id + "c").value;
+      for (var i = 0; i < frames.length; i++) {
+        frames[i].document.execCommand("foreColor", false, color);
+      }
+    }
+    //Setting up the edit button to work
+    document.querySelectorAll(".edit").forEach(btn => {
+      btn.addEventListener("click", e => {
+        var art = e.target.parentElement.parentElement;
+        var editbox = art.querySelector(".editbox");
+        if (art.querySelector(".editbox").classList.contains("hide")) {
+          //Showing the hidden form
+          art.querySelector(".editbox").classList.remove("hide");
+
+          //Setting eventlistner to the save btn
+          art.querySelector(".submit2").addEventListener("click", e => {
+            submit_form2(`${art.querySelector(".editor").name}`);
+          });
+
+          //Setting eventlistner to the color btn
+          art.querySelector(".textcolor").addEventListener("click", e => {
+            iTextcolor(`${art.querySelector(".editor").name}`);
+          });
+          //Replacing content in iframe with the current post body
+          window.frames[
+            `${art.querySelector(".editor").name}`
+          ].document.body.innerHTML = art.querySelector(".bodyarea").value;
+
+          e.target.innerHTML = "done";
+        } else {
+          art.querySelector(".editbox").className += " hide";
+          e.target.innerHTML = "edit";
+        }
+      });
+    });
+  });
+</script>
