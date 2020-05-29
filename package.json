@@ -1,7 +1,7 @@
 {
-  "name": "spiderwdtask-2",
+  "name": "deltawdtask-3",
   "version": "1.0.0",
-  "description": "This is to hold the contents of the second (0+2) Web Dev task of Spider - SOP",
+  "description": "This is to hold the contents of the third (0+2) Web Dev task of Delta Mentorship Program",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marmikupadhyay/SpiderWDTask-2.git"
+    "url": "git+https://github.com/marmikupadhyay/DeltaWDTask-3.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/marmikupadhyay/SpiderWDTask-2/issues"
+    "url": "https://github.com/marmikupadhyay/DeltaWDTask-3/issues"
   },
-  "homepage": "https://github.com/marmikupadhyay/SpiderWDTask-2#readme",
+  "homepage": "https://github.com/marmikupadhyay/DeltaWDTask-3#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
