@@ -21,6 +21,14 @@
               <i class="material-icons">alarm</i>
               <span class="author">At <%= invite.time %></span>
             </div>
+            <div>
+              <i class="material-icons">today</i>
+              <span class="author"
+                >Deadline of submission : <%= invite.deadline.getDate() %>-<%=
+                invite.deadline.getMonth() %>-<%= invite.deadline.getFullYear()
+                %></span
+              >
+            </div>
             <hr />
             <div class="invite-body">
               <%- invite.body%>
@@ -53,6 +61,7 @@
             <h1 class="invite-footer cyan lighten-2 white-text">
               <%= invite.footer %>
             </h1>
+
             <% if(invite.creator.equals(user._id)) { %>
             <div class="btn-box">
               <% allUsers.forEach(tempuser=>{ %> <%
@@ -71,8 +80,16 @@
               <% } %> <% }); %>
             </div>
             <% } else
-            if(!invite.accepted.includes(user._id)&&!invite.rejected.includes(user._id))
+            if(invite.accepted.includes(user._id)||invite.rejected.includes(user._id))
             { %>
+            <div class="btn-box">
+              <h5 class="center-align">Already Answered</h5>
+            </div>
+            <% } else if(today.getTime() > deadline.getTime()) { %>
+            <div class="btn-box">
+              <h5 class="center-align">Deadline Gone</h5>
+            </div>
+            <% } else { %>
             <div class="btn-box">
               <a
                 href="/user/accept/<%= invite._id %>"
@@ -84,10 +101,6 @@
                 class="waves-effect waves-light btn red ligten-1 right reject"
                 >Reject</a
               >
-            </div>
-            <% } else { %>
-            <div class="btn-box">
-              <h5 class="center-align">Already Answered</h5>
             </div>
             <% } %>
           </article>

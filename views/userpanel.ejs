@@ -50,7 +50,10 @@
         }
       }
     });
-    var dates = M.Datepicker.init(document.querySelectorAll(".datepicker"), {});
+    var dates = M.Datepicker.init(document.getElementById("date"), {});
+    var deadline = M.Datepicker.init(document.getElementById("deadline"), {
+      format: "yyyy-mm-dd"
+    });
     var times = M.Timepicker.init(document.querySelectorAll(".timepicker"), {});
 
     //Function to submit the edit form

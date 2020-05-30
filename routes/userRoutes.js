@@ -30,7 +30,17 @@ router.get("/panel", ensureAuthenticated, (req, res) => {
 
 //Handleing Invite addition
 router.post("/add", ensureAuthenticated, (req, res) => {
-  const { header, body, footer, date, time, sendto, all, question } = req.body;
+  const {
+    header,
+    body,
+    footer,
+    date,
+    time,
+    sendto,
+    all,
+    question,
+    deadline
+  } = req.body;
   var global;
   var sendtousers;
   if (all == "on") {
@@ -49,7 +59,8 @@ router.post("/add", ensureAuthenticated, (req, res) => {
     time: time,
     sendto: sendtousers,
     global: global,
-    question
+    question,
+    deadline: deadline
   });
   newInvite
     .save()
@@ -106,10 +117,14 @@ router.get("/view/:id", ensureAuthenticated, (req, res) => {
       } else {
         User.find({})
           .then(users => {
+            var today = new Date();
+            var deadline = new Date(invite.deadline);
             res.render("maininvite", {
               user: req.user,
               invite,
-              allUsers: users
+              allUsers: users,
+              today,
+              deadline
             });
           })
           .catch(err => {
