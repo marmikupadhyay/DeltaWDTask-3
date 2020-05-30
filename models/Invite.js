@@ -33,6 +33,13 @@ const inviteSchema = new mongoose.Schema({
   global: {
     type: Boolean,
     default: true
+  },
+  question: {
+    type: String,
+    default: ""
+  },
+  answers: {
+    type: mongoose.Schema.Types.Mixed
   }
 });
 

@@ -21,15 +21,54 @@
               <i class="material-icons">alarm</i>
               <span class="author">At <%= invite.time %></span>
             </div>
+            <hr />
             <div class="invite-body">
               <%- invite.body%>
             </div>
+            <hr />
+            <% if(invite.question.trim()!="") { %>
+            <div class="invite-question">
+              <h5>The Sender Has some questions.</h5>
+              <div class="valign-wrapper">
+                <i class="material-icons medium">help_outline</i>
+                <span class="question"><%= invite.question %></span>
+              </div>
+              <%
+              if(!invite.creator.equals(user._id)&&!invite.accepted.includes(user._id)&&!invite.rejected.includes(user._id))
+              { %>
+              <form action="/user/answer/<%= invite._id %>" method="POST">
+                <div class="input-field">
+                  <i class="material-icons prefix">chat_bubble_outline</i>
+                  <input type="text" id="answer" name="answer" />
+                  <label for="answer">Your Answer</label>
+                </div>
+                <button type="submit" class="waves-effect waves-light btn">
+                  Answer
+                </button>
+              </form>
+              <% } %>
+            </div>
+            <% } %>
+
             <h1 class="invite-footer cyan lighten-2 white-text">
               <%= invite.footer %>
             </h1>
             <% if(invite.creator.equals(user._id)) { %>
             <div class="btn-box">
-              <h5 class="center-align">You cant answer your own invite</h5>
+              <% allUsers.forEach(tempuser=>{ %> <%
+              if(invite.accepted.includes(tempuser._id)) { %>
+              <div class="response">
+                <%= tempuser.username %> has accepted your invite.
+                <hr />
+                <%invite.answers.forEach(ans=>{ %> <%
+                if(ans.name==tempuser.username) { %>
+                <p>
+                  He Responded With :- <br />
+                  <%= ans.answer %>
+                </p>
+                <% } %><% }); %>
+              </div>
+              <% } %> <% }); %>
             </div>
             <% } else
             if(!invite.accepted.includes(user._id)&&!invite.rejected.includes(user._id))
@@ -37,12 +76,12 @@
             <div class="btn-box">
               <a
                 href="/user/accept/<%= invite._id %>"
-                class="waves-effect waves-light btn green ligten-1 left"
+                class="waves-effect waves-light btn green ligten-1 left accept"
                 >Accept</a
               >
               <a
                 href="/user/reject/<%= invite._id %>"
-                class="waves-effect waves-light btn red ligten-1 right"
+                class="waves-effect waves-light btn red ligten-1 right reject"
                 >Reject</a
               >
             </div>
@@ -58,3 +97,6 @@
   </div>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", e => {});
+</script>

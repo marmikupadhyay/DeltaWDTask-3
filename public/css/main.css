@@ -275,3 +275,23 @@ article img {
   margin: 0;
   width: 20%;
 }
+.invite .invite-question {
+  margin: 10 20px;
+  font-size: 1.5em;
+}
+.invite .invite-question .question {
+  margin: 10px;
+  font-size: 1em;
+}
+
+.invite form {
+  margin: 10px 20px;
+}
+
+.invite form input {
+  margin-left: 10px;
+}
+
+.invite .prefix {
+  margin: 0;
+}

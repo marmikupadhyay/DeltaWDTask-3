@@ -30,7 +30,7 @@ router.get("/panel", ensureAuthenticated, (req, res) => {
 
 //Handleing Invite addition
 router.post("/add", ensureAuthenticated, (req, res) => {
-  const { header, body, footer, date, time, sendto, all } = req.body;
+  const { header, body, footer, date, time, sendto, all, question } = req.body;
   var global;
   var sendtousers;
   if (all == "on") {
@@ -48,7 +48,8 @@ router.post("/add", ensureAuthenticated, (req, res) => {
     date: date,
     time: time,
     sendto: sendtousers,
-    global: global
+    global: global,
+    question
   });
   newInvite
     .save()
@@ -103,7 +104,17 @@ router.get("/view/:id", ensureAuthenticated, (req, res) => {
       if (!invite) {
         res.render("404", { user: req.user });
       } else {
-        res.render("maininvite", { user: req.user, invite });
+        User.find({})
+          .then(users => {
+            res.render("maininvite", {
+              user: req.user,
+              invite,
+              allUsers: users
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
     })
     .catch(err => {
@@ -145,4 +156,25 @@ router.get("/reject/:id", ensureAuthenticated, (req, res) => {
     .catch(err => console.log(err));
 });
 
+//Handling User Responses of Invites
+
+router.post("/answer/:id", ensureAuthenticated, (req, res) => {
+  const { answer } = req.body;
+  var useranswer = {
+    name: req.user.username,
+    answer
+  };
+  Invite.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      $addToSet: {
+        answers: useranswer
+      }
+    }
+  )
+    .then(invite => {
+      res.redirect(`/user/view/${req.params.id}`);
+    })
+    .catch(err => console.log(err));
+});
 module.exports = router;
