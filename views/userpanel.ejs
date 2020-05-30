@@ -41,6 +41,7 @@
 <script>
   window.addEventListener("DOMContentLoaded", e => {
     var instance = M.Tabs.init(document.querySelector(".tabs"), {});
+    M.Sidenav.init(document.querySelectorAll(".sidenav"), {});
     var instances = M.Chips.init(document.querySelectorAll(".chips"), {
       autocompleteOptions: {
         data: {

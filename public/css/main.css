@@ -12,6 +12,11 @@
   margin: 0;
 }
 
+.sidenav-overlay {
+  background-color: rgba(0, 0, 0, 0);
+  display: none !important;
+}
+
 .banner {
   height: 100vh;
   background: url(../imgs/sidebanner.jpg);
@@ -327,5 +332,11 @@ article img {
     overflow-y: auto;
     height: unset;
     min-height: 100vh;
+  }
+  .sidebox {
+    background: url(../imgs/sidebanner.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.95;
   }
 }
