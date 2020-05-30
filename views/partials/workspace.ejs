@@ -2,12 +2,89 @@
   <%= title %>
 </h1>
 <hr />
+<div class="presets row">
+  <div class="card col s3 preset-item">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img
+        src="https://img.freepik.com/free-vector/happy-birthday-vector-simple-card-design_1017-12747.jpg?size=338&ext=jpg"
+        alt=""
+        class="activator"
+      />
+    </div>
+    <div class="card-content">
+      <span class="card-title activator"
+        >Birthday Preset<i class="material-icons right">more_vert</i></span
+      >
+      <p><a id="birthday">Use Preset</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title activator"
+        >Birthday Preset<i class="material-icons right">close</i></span
+      >
+      <p>
+        This is preset is made specfically for Birthday Invite purposes, click
+        on it to fill the header , body and footer , you can change/fill the
+        remaining fields.
+      </p>
+    </div>
+  </div>
+  <div class="card col s3 preset-item">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img
+        src="https://img.freepik.com/free-vector/wedding-invitations-card-with-cute-couple-bride-groom-cartoon_21630-593.jpg?size=338&ext=jpg"
+        alt=""
+        class="activator"
+      />
+    </div>
+    <div class="card-content">
+      <span class="card-title activator"
+        >Wedding Preset<i class="material-icons right">more_vert</i></span
+      >
+      <p><a id="wedding">Use Preset</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title activator"
+        >Wedding Preset<i class="material-icons right">close</i></span
+      >
+      <p>
+        This is preset is made specfically for Wedding Invite purposes, click on
+        it to fill the header , body and footer , you can change/fill the
+        remaining fields.
+      </p>
+    </div>
+  </div>
+  <div class="card col s3 preset-item">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img
+        src="https://image.freepik.com/free-vector/funeral-ceremony-background_23-2148009967.jpg"
+        alt=""
+        class="activator"
+      />
+    </div>
+    <div class="card-content">
+      <span class="card-title activator"
+        >Funeral Preset<i class="material-icons right">more_vert</i></span
+      >
+      <p><a id="funeral">Use Preset</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title activator"
+        >Funeral Preset<i class="material-icons right">close</i></span
+      >
+      <p>
+        This is preset is made specfically for Funeral Invite purposes, click on
+        it to fill the header , body and footer , you can change/fill the
+        remaining fields.
+      </p>
+    </div>
+  </div>
+</div>
 <div class="article-form z-depth-2">
   <form action="/user/add" method="POST" id="myform">
     <div class="input-field">
       <i class="material-icons prefix">title</i>
-      <input type="text" id="header" name="header" />
-      <label for="header">Header</label>
+      <input type="text" id="header2" name="header" />
+      <label for="header2">Header</label>
     </div>
     <div class="input-field">
       <i class="material-icons prefix">today</i>
@@ -80,8 +157,8 @@
     </div>
     <div class="input-field">
       <i class="material-icons prefix">web</i>
-      <input type="text" id="footer" name="footer" />
-      <label for="footer">Footer</label>
+      <input type="text" id="footer2" name="footer" />
+      <label for="footer2">Footer</label>
     </div>
     <div class="input-field">
       <i class="material-icons prefix">help_outline</i>
@@ -121,3 +198,4 @@
   </form>
 </div>
 <script src="/js/editor.js"></script>
+<script src="/js/presets.js"></script>

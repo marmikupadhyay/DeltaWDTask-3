@@ -42,7 +42,8 @@ const inviteSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed
   },
   deadline: {
-    type: Date
+    type: Date,
+    required: true
   }
 });
 
