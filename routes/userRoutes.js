@@ -1,10 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
+const webpush = require("web-push");
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const nodemailer = require("nodemailer");
+const fetch = require("node-fetch");
 
 const User = require("../models/User");
 const Invite = require("../models/Invite");
 const { ensureAuthenticated } = require("../config/auth");
+
+//Setting Up Web Push
+const publicVapidKey =
+  "BCcwLqPym6940WywTkUOghInLWQBdUGIqHER9D9dzNeZUD-QEztH5UYe1UgOsOyaIJXL209TRnjFTnqlJphU2Do";
+const privateVapidKey = "RywDykHUfS2nhtdnh8hzSUJrg2kprHMWkaL7rRfhgcU";
+
+webpush.setVapidDetails(
+  "mailto:test@test.com",
+  publicVapidKey,
+  privateVapidKey
+);
 
 //Get Request to Main Panel
 router.get("/panel", ensureAuthenticated, (req, res) => {
@@ -62,17 +76,43 @@ router.post("/add", ensureAuthenticated, (req, res) => {
     question,
     deadline: deadline
   });
-  newInvite
-    .save()
-    .then(invite => {
-      req.flash("success_msg", "Invite Created");
-      res.redirect("/user/panel");
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "invitebook.ib@gmail.com", // generated ethereal user
+      pass: "invitebook@07" // generated ethereal password
+    }
+  });
+  User.find({})
+    .then(users => {
+      users.forEach(user => {
+        if (sendtousers.includes(user.username) || newInvite.global) {
+          let info = transporter.sendMail({
+            from: '"InviteBook App" <initebook.ib@gmail.com>', // sender address
+            to: user.email, // list of receivers
+            subject: "New Invitation", // Subject line
+            text: newInvite.body, // plain text body
+            html: newInvite.body // html body
+          });
+        }
+      });
+
+      newInvite
+        .save()
+        .then(invite => {
+          fetch();
+          req.flash("success_msg", "Invite Created");
+          res.redirect("/user/panel");
+        })
+        .catch(err => {
+          console.log(err);
+          req.flash("error_msg", "Fill All Fields");
+          res.redirect("/user/panel");
+        });
     })
-    .catch(err => {
-      console.log(err);
-      req.flash("error_msg", "Fill All Fields");
-      res.redirect("/user/panel");
-    });
+    .catch(err => console.log(err));
 });
 
 //Handling Invite Deletion
@@ -192,4 +232,5 @@ router.post("/answer/:id", ensureAuthenticated, (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
 module.exports = router;
