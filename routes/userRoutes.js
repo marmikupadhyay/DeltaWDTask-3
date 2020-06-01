@@ -81,8 +81,8 @@ router.post("/add", ensureAuthenticated, (req, res) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "invitebook.ib@gmail.com", // generated ethereal user
-      pass: "invitebook@07" // generated ethereal password
+      user: process.env["USER_EMAIL"], // generated ethereal user
+      pass: process.env["USER_PASS"] // generated ethereal password
     }
   });
   User.find({})

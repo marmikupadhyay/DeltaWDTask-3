@@ -32,6 +32,7 @@ db.on("error", err => {
 
 //Setting PUBLIC static folder
 app.use("/", express.static(path.join(__dirname, "public")));
+require("dotenv").config({ path: __dirname + "/.env" });
 
 // Setting Up View Engine
 app.use(expressLayouts);
