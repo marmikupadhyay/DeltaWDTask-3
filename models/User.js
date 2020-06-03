@@ -17,12 +17,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "Hey There Checkout my posts."
   },
-  followers: {
-    type: [mongoose.Schema.Types.ObjectId]
-  },
-  following: {
-    type: [mongoose.Schema.Types.ObjectId]
-  }
+  notifications: [String]
 });
 
 const User = mongoose.model("User", UserSchema);

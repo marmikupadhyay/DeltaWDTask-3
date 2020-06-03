@@ -39,7 +39,8 @@ const inviteSchema = new mongoose.Schema({
     default: ""
   },
   answers: {
-    type: mongoose.Schema.Types.Mixed
+    type: mongoose.Schema.Types.Mixed,
+    default: []
   },
   deadline: {
     type: Date,

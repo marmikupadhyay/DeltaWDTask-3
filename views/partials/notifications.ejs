@@ -1,0 +1,17 @@
+<h1 class="sub-head">
+  New Notifications
+</h1>
+<hr />
+<ul class="collection with-header">
+  <% user.notifications.forEach(item=>{ %>
+  <li class="collection-item">
+    <div>
+      <%= item %><a
+        href="/user/notification/delete/<%= item %>"
+        class="secondary-content"
+        ><i class="material-icons">close</i></a
+      >
+    </div>
+  </li>
+  <% }); %>
+</ul>

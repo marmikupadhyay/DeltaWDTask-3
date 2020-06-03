@@ -16,5 +16,12 @@
         <%= user.about %>
       </p>
     </div>
+    <div class="card-action">
+      <a class="waves-effect waves-light btn pink lighten-1" id="notfbtn"
+        >Notifications <% if(user.notifications.length > 0) { %>
+        <span class="new badge"> <%= user.notifications.length %> </span>
+        <% } %>
+      </a>
+    </div>
   </div>
 </div>

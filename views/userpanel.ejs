@@ -18,6 +18,9 @@
             <li class="tab">
               <a href="#workspace">Workspace</a>
             </li>
+            <li class="tab hide">
+              <a href="#notifications">Notifications</a>
+            </li>
           </ul>
         </div>
         <div id="feed" class="col s12">
@@ -33,6 +36,9 @@
         <div id="workspace" class="col s12">
           <%- include('./partials/workspace.ejs',{title:"Create Invite"}); %>
         </div>
+        <div id="notifications" class="col s12">
+          <%- include('./partials/notifications.ejs'); %>
+        </div>
       </div>
     </div>
   </div>
@@ -42,15 +48,11 @@
   window.addEventListener("DOMContentLoaded", e => {
     var instance = M.Tabs.init(document.querySelector(".tabs"), {});
     M.Sidenav.init(document.querySelectorAll(".sidenav"), {});
-    var instances = M.Chips.init(document.querySelectorAll(".chips"), {
-      autocompleteOptions: {
-        data: {
-          Apple: null,
-          Microsoft: null,
-          Google: null
-        }
-      }
+
+    document.getElementById("notfbtn").addEventListener("click", e => {
+      instance.select("notifications");
     });
+
     var dates = M.Datepicker.init(document.getElementById("date"), {});
     var deadline = M.Datepicker.init(document.getElementById("deadline"), {
       format: "yyyy-mm-dd"

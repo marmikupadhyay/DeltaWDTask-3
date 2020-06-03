@@ -88,7 +88,31 @@ router.post("/add", ensureAuthenticated, (req, res) => {
   User.find({})
     .then(users => {
       users.forEach(user => {
-        if (sendtousers.includes(user.username) || newInvite.global) {
+        if (!newInvite.global) {
+          if (
+            sendtousers.includes(user.username) &&
+            user.username != req.user.username
+          ) {
+            let info = transporter.sendMail({
+              from: '"InviteBook App" <initebook.ib@gmail.com>', // sender address
+              to: user.email, // list of receivers
+              subject: "New Invitation", // Subject line
+              text: newInvite.body, // plain text body
+              html: newInvite.body // html body
+            });
+
+            //Adding To the notifications of the reciver.
+            User.findOneAndUpdate(
+              { _id: user._id },
+              {
+                $push: {
+                  notifications: `${req.user.username} sent a new invite - ${newInvite.header}.`
+                }
+              },
+              (err, doc, res) => {}
+            );
+          }
+        } else if (user.username != req.user.username) {
           let info = transporter.sendMail({
             from: '"InviteBook App" <initebook.ib@gmail.com>', // sender address
             to: user.email, // list of receivers
@@ -96,13 +120,23 @@ router.post("/add", ensureAuthenticated, (req, res) => {
             text: newInvite.body, // plain text body
             html: newInvite.body // html body
           });
+
+          //Adding To the notifications of the reciver.
+          User.findOneAndUpdate(
+            { _id: user._id },
+            {
+              $push: {
+                notifications: `${req.user.username} sent a new invite - ${newInvite.header}.`
+              }
+            },
+            (err, doc, res) => {}
+          );
         }
       });
 
       newInvite
         .save()
         .then(invite => {
-          fetch();
           req.flash("success_msg", "Invite Created");
           res.redirect("/user/panel");
         })
@@ -188,8 +222,22 @@ router.get("/accept/:id", ensureAuthenticated, (req, res) => {
     }
   )
     .then(invite => {
-      req.flash("success_msg", "Invite Accepted");
-      res.redirect("/user/panel");
+      //Adding to the notifications of the creator
+      User.findOneAndUpdate(
+        { _id: invite.creator },
+        {
+          $push: {
+            notifications: `${req.user.username} accepted your ${invite.header} Invite.`
+          }
+        }
+      )
+        .then(user => {
+          req.flash("success_msg", "Invite Accepted");
+          res.redirect("/user/panel");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     })
     .catch(err => console.log(err));
 });
@@ -231,6 +279,20 @@ router.post("/answer/:id", ensureAuthenticated, (req, res) => {
       res.redirect(`/user/view/${req.params.id}`);
     })
     .catch(err => console.log(err));
+});
+
+//Handling Notification Deletion
+router.get("/notification/delete/:text", ensureAuthenticated, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $pull: { notifications: req.params.text } }
+  )
+    .then(user => {
+      res.redirect("/user/panel");
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 module.exports = router;
