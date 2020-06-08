@@ -34,5 +34,5 @@ All the ticked sub-tasks are completed.
 
 - [x] Support addition and dynamic placement of images in the invitation.
 - [x] Implement an attendance tracking system for the events.
-- [] Google Calendar API integration for users to keep track of events they're attending.
+- [ ] Google Calendar API integration for users to keep track of events they're attending.
 - [x] Use an Email API to send invitations to users via email.
